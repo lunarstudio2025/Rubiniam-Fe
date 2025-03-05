@@ -125,21 +125,16 @@ export default function AdminOrders() {
     },
   ]
 
-  // Filter orders based on search query and status filter
-  const filteredOrders = orders.filter((order) => {
-    const matchesSearch =
-      order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      order.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      order.email.toLowerCase().includes(searchQuery.toLowerCase())
+ const filteredOrders = orders.filter((order) => {
+  const matchesSearch =
+    order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    order.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    order.email.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const match
-    ||
-                         order.email.toLowerCase().includes(searchQuery.toLowerCase())
+  const matchesStatus = statusFilter === "all" || order.status === statusFilter;
 
-    const matchesStatus = statusFilter === "all" || order.status === statusFilter
-
-    return matchesSearch && matchesStatus
-  })
+  return matchesSearch && matchesStatus;
+});
 
   const getStatusBadge = (status: string) => {
     switch (status) {
